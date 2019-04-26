@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.apache.catalina.User;
@@ -43,10 +44,11 @@ public class IndexController {
 		return "Logout";
 	}
 	
-//	@RequestMapping("login-success")
-//	public String loginsuccess()
-//	{
-//		return "login_success";
-//	}
+	@RequestMapping("user")
+	@ResponseBody
+	public Principal user(Principal principal)
+	{
+		return principal;
+	}
 	
 }
