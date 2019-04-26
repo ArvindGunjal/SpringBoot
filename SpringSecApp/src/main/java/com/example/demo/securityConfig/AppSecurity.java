@@ -10,11 +10,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.authentication.UserCredentials;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import com.example.demo.service.UseLoginServiceImpl;
@@ -57,6 +59,30 @@ public class AppSecurity extends WebSecurityConfigurerAdapter {
 		
 		
 	}
+
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// TODO Auto-generated method stub
+		http.
+		csrf().disable().authorizeRequests().antMatchers("/login").permitAll()
+		.and()
+		.formLogin()
+		.loginPage("/login").permitAll()
+		.and()
+		.logout().invalidateHttpSession(true)
+		.clearAuthentication(true)
+		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))		//on which method logout 
+		.logoutSuccessUrl("/logout-success").permitAll();				//what after logout
+		
+		
+		
+		super.configure(http);
+		
+		
+		
+	}
+	
 	
 	
 }

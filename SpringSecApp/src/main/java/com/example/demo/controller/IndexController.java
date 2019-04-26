@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-@RestController
+@Controller
 public class IndexController {
 
 	@RequestMapping("/index")
@@ -31,4 +31,22 @@ public class IndexController {
 		return "welcome";
 	}
 
+	@RequestMapping("/login")
+	public String login()
+	{
+		return "Login";
+	}
+	
+	@RequestMapping("logout-success")
+	public String logout()
+	{
+		return "Logout";
+	}
+	
+//	@RequestMapping("login-success")
+//	public String loginsuccess()
+//	{
+//		return "login_success";
+//	}
+	
 }

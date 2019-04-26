@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Welcome Page..<a href="/logout">logout</a>
+Logout<a href="/logout-success">Log Out</a>
 </body>
-</html>	
+</html>
